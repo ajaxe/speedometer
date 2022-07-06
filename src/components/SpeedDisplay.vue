@@ -1,16 +1,18 @@
 <template>
-  <div class="q-mt-lg">
-    <strong
+  <div class="">
+    <span
       class="text-h1 large"
       :class="[displayColor]"
       v-text="store.currentSpeedDisplay"
-    ></strong>
+    ></span>
   </div>
 </template>
 
 <style scoped lang="scss">
+$size: 11rem;
 .large {
-  font-size: 15rem;
+  font-size: $size;
+  line-height: $size;
 }
 </style>
 

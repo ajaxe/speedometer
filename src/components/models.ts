@@ -1,8 +1,4 @@
-export interface Todo {
-  id: number;
-  content: string;
-}
-
-export interface Meta {
-  totalCount: number;
+export const SpeedUnit = {
+  Mpsec: 'm-per-sec',
+  Kmph: 'km-per-hr'
 }

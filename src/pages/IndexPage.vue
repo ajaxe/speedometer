@@ -1,12 +1,12 @@
 <template>
   <q-page class="flex flex-center">
     <q-card class="layout">
-      <q-card-section class="row justify-center">
+      <q-card-section class="row justify-center q-pb-xs">
         <q-item-section class="col-auto">
           <UnitSelector />
         </q-item-section>
       </q-card-section>
-      <q-card-section class="row justify-center">
+      <q-card-section class="row justify-center q-pt-xs">
         <q-item-section class="col-auto">
           <SpeedDisplay />
         </q-item-section>
