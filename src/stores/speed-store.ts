@@ -4,9 +4,13 @@ import { SpeedUnit } from 'src/components/models';
 export const useSpeedStore = defineStore('speedometer', {
   state: () => ({
     currentSpeed: -1,
-    unit: SpeedUnit.Mpsec
+    unit: SpeedUnit.Mpsec,
+    enabled: true,
+    error: '',
+    ticker: -1,
   }),
   getters: {
+    hasError: (state) => !!state.error,
     currentSpeedDisplay: (state) => {
       if (state.currentSpeed === -1) {
         return '--';
@@ -23,9 +27,15 @@ export const useSpeedStore = defineStore('speedometer', {
   },
   actions: {
     setCurrentSpeed(value: number | null) {
-      console.log('setCurrentSpeed: ' + value);
-      //this.currentSpeed = value ?? -1;
+      this.currentSpeed = value ?? -1;
     },
+    setTicker() {
+      let ticker = this.ticker + 1;
+      if (ticker >= 100) {
+        ticker = 0;
+      }
+      this.ticker = ticker;
+    }
   },
 });
 
