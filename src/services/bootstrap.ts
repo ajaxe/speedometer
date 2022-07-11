@@ -4,13 +4,11 @@ const store = useSpeedStore();
 
 export const start = () => {
   if (navigator.geolocation) {
-    setInterval(() => {
-      navigator.geolocation.getCurrentPosition(onSuccess, onError, {
-        maximumAge: 0,
-        timeout: 500,
-        enableHighAccuracy: true
-      });
-    }, 1000);
+    navigator.geolocation.watchPosition(onSuccess, onError, {
+      maximumAge: 0,
+      timeout: 500,
+      enableHighAccuracy: true
+    });
   } else {
     store.enabled = false;
   }
