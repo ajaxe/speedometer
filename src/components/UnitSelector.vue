@@ -9,6 +9,7 @@
       :options="[
         { label: 'm/sec', value: SpeedUnit.Mpsec },
         { label: 'km/hr', value: SpeedUnit.Kmph },
+        { label: 'mile/hr', value: SpeedUnit.Mph },
       ]"
       @update:model-value="updateUnit"
     />

@@ -18,8 +18,9 @@ export const useSpeedStore = defineStore('speedometer', {
       return convertSpeed(state.currentSpeed, state.unit);
     },
     displayColor: (state) => {
-      if (state.currentSpeed < 45) { return 'green' }
-      else if (state.currentSpeed < 65) { return 'orange' }
+      const v = convertSpeed(state.currentSpeed, state.unit);
+      if (v < 45) { return 'green' }
+      else if (v < 65) { return 'orange' }
       else {
         return 'red'
       }
@@ -42,6 +43,8 @@ export const useSpeedStore = defineStore('speedometer', {
 const convertSpeed = (input: number, unit: string) => {
   if (unit === SpeedUnit.Kmph) {
     return parseInt(Math.ceil(input * 60 * 60 / 1000).toString());
+  } else if (unit === SpeedUnit.Mph) {
+    return parseInt(Math.ceil(input * 2.23693629).toString());
   }
   return parseInt(Math.ceil(input).toString());
 }

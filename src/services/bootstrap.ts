@@ -13,13 +13,17 @@ export const start = () => {
     store.enabled = false;
   }
 }
-
+let currentReportedSpeed = 0;
 const onSuccess = (position: GeolocationPosition) => {
-  store.setCurrentSpeed(position.coords.speed);
-  store.setTicker();
+  currentReportedSpeed = position.coords.speed ?? 0;
 };
 
 const onError = (positionError: GeolocationPositionError) => {
   store.error = JSON.stringify(positionError);
   store.setTicker();
 };
+
+const limiter = setInterval(function () {
+  store.setCurrentSpeed(currentReportedSpeed);
+  store.setTicker();
+}, 1000);
