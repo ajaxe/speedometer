@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { SpeedUnit } from 'src/components/models';
+import { initialize, release as screenLockRelease } from 'src/services/screen-wake';
 
 export const useSpeedStore = defineStore('speedometer', {
   state: () => ({
@@ -8,6 +9,8 @@ export const useSpeedStore = defineStore('speedometer', {
     enabled: true,
     error: '',
     ticker: -1,
+    screenWakeSupported: false,
+    screenWakeEnabled: false
   }),
   getters: {
     hasError: (state) => !!state.error,
@@ -36,6 +39,27 @@ export const useSpeedStore = defineStore('speedometer', {
         ticker = 0;
       }
       this.ticker = ticker;
+    },
+    setScreenWake(enabled: boolean) {
+      this.screenWakeEnabled = enabled;
+      if (enabled) {
+        this.screenWakeInitialize();
+      }
+    },
+    async screenWakeInitialize() {
+      const result = await initialize();
+      this.screenWakeSupported = result.isSupported;
+      this.screenWakeEnabled = result.lockAcquired;
+      this.error = result.error;
+    },
+    screenWakeOnRelease() {
+      this.screenWakeEnabled = false;
+    },
+    screenWakeRelease() {
+      screenLockRelease()
+        .then(() => {
+          this.screenWakeEnabled = false;
+        });
     }
   },
 });

@@ -23,7 +23,11 @@ const onError = (positionError: GeolocationPositionError) => {
   store.setTicker();
 };
 
-const limiter = setInterval(function () {
+function limiter() {
+  const timeout = 1000 + (Math.random() * 100);
   store.setCurrentSpeed(currentReportedSpeed);
   store.setTicker();
-}, 1000);
+
+  setTimeout(limiter, timeout);
+}
+limiter();
