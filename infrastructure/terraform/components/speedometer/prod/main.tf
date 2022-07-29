@@ -1,5 +1,5 @@
 module "main" {
-  source = "../../../../../../github-terraform/modules/s3_copy"
+  source = "github.com/ajaxe/terraform/modules/s3_copy"
 
   deploy_source = var.deploy_source
   deploy_bucket = var.deploy_bucket
