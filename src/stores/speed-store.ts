@@ -44,6 +44,8 @@ export const useSpeedStore = defineStore('speedometer', {
       this.screenWakeEnabled = enabled;
       if (enabled) {
         this.screenWakeInitialize();
+      } else {
+        this.screenWakeRelease();
       }
     },
     async screenWakeInitialize() {

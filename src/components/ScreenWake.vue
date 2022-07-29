@@ -6,6 +6,7 @@
     push
     :class="stateColor"
     @click="toggleScreenWake"
+    :disable="disabled"
   />
 </template>
 <script lang="ts" setup>
@@ -20,6 +21,8 @@ const props = defineProps({
     default: 'xl',
   },
 });
+
+const disabled = computed(() => !store.screenWakeSupported);
 
 const stateColor = computed(() => {
   if (!store.screenWakeSupported) {
