@@ -1,0 +1,9 @@
+allowBuilds:
+  '@parcel/watcher': set this to true or false
+  esbuild: set this to true or false
+  vue-demi: set this to true or false
+minimumReleaseAgeExclude:
+  - vite@3.0.0 || 3.2.11 || 4.5.6 || 4.5.10 || 4.5.11 || 4.5.12 || 4.5.13 || 4.5.14 || 5.4.9 || 5.4.20 || 6.4.2 || 6.4.3
+  - rollup@2.79.2 || 2.80.0
+  - esbuild@0.24.3
+  - serialize-javascript@7.0.3 || 7.0.5
